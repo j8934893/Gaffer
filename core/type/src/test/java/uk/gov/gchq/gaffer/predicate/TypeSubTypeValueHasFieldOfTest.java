@@ -35,7 +35,7 @@ import uk.gov.gchq.koryphe.util.JsonSerialiser;
 public class TypeSubTypeValueHasFieldOfTest extends PredicateTest {
 
     @Test
-    public void shouldAccepValidValue() {
+    public void shouldAcceptValidValue() {
         // Given
         final TypeSubTypeValueHasFieldOf filter = new TypeSubTypeValueHasFieldOf(TSV.VALUE, "testValue");
 
@@ -47,7 +47,7 @@ public class TypeSubTypeValueHasFieldOfTest extends PredicateTest {
     }
 
     @Test
-    public void shouldAccepValidType() {
+    public void shouldAcceptValidType() {
         // Given
         final TypeSubTypeValueHasFieldOf filter = new TypeSubTypeValueHasFieldOf(TSV.TYPE, "testType");
 
@@ -59,7 +59,7 @@ public class TypeSubTypeValueHasFieldOfTest extends PredicateTest {
     }
 
     @Test
-    public void shouldAccepValidSubType() {
+    public void shouldAcceptValidSubType() {
         // Given
         final TypeSubTypeValueHasFieldOf filter = new TypeSubTypeValueHasFieldOf(TSV.SUBTYPE, "testSubType");
 

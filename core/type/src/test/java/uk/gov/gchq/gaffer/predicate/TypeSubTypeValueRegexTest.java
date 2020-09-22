@@ -35,7 +35,7 @@ import uk.gov.gchq.koryphe.util.JsonSerialiser;
 public class TypeSubTypeValueRegexTest extends PredicateTest {
 
     @Test
-    public void shouldAccepValidValue() {
+    public void shouldAcceptValidValue() {
         // Given
         final TypeSubTypeValueRegex filter = new TypeSubTypeValueRegex(TSV.VALUE, "te[a-d]{3}st");
 
