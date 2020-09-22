@@ -40,7 +40,7 @@ public class TypeSubTypeValueRegexTest extends PredicateTest {
         final TypeSubTypeValueRegex filter = new TypeSubTypeValueRegex(TSV.VALUE, "te[a-d]{3}st");
 
         // When
-        boolean accepted = filter.test(new TypeSubTypeValue("test", "test", "teaadst"));
+        boolean accepted = filter.testFilter(new TypeSubTypeValue("test", "test", "teaadst"));
 
         // Then
         assertTrue(accepted);
@@ -52,7 +52,7 @@ public class TypeSubTypeValueRegexTest extends PredicateTest {
         final TypeSubTypeValueRegex filter = new TypeSubTypeValueRegex(TSV.VALUE, "fa[a-d]{3}il");
 
         // When
-        boolean accepted = filter.test(new TypeSubTypeValue("test", "test","falndil"));
+        boolean accepted = filter.testFilter(new TypeSubTypeValue("test", "test","falndil"));
 
         // Then
         assertFalse(accepted);

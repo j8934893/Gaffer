@@ -73,15 +73,15 @@ public class TypeSubTypeValueRegex extends KoryphePredicate<TypeSubTypeValue> {
     }
 
     @Override
-    public boolean test(final TypeSubTypeValue typeSubTypeValue) {
+    public boolean testFilter(final TypeSubTypeValue typeSubTypeValue) {
         if (null != typeSubTypeValue) {
             switch (field) {
                 case TYPE :
-                    return _test(typeSubTypeValue.getType());
+                    return _testFilter(typeSubTypeValue.getType());
                 case SUBTYPE :
-                    return _test(typeSubTypeValue.getSubType());
+                    return _testFilter(typeSubTypeValue.getSubType());
                 case VALUE :
-                    return _test(typeSubTypeValue.getValue());
+                    return _testFilter(typeSubTypeValue.getValue());
                 default:
                     throw new IllegalArgumentException("field can only be type, subtype or value");
             }
@@ -89,7 +89,7 @@ public class TypeSubTypeValueRegex extends KoryphePredicate<TypeSubTypeValue> {
         return false;
     }
 
-    public boolean _test(final String input) {
+    public boolean _testFilter(final String input) {
         return !(null == input)
                 && this.regex.matcher(input).matches();
     }
