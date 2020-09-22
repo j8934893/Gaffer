@@ -60,15 +60,15 @@ public class TypeSubTypeValueHasFieldOf extends KoryphePredicate<TypeSubTypeValu
     }
 
     @Override
-    public boolean test(final TypeSubTypeValue typeSubTypeValue) {
+    public boolean testFilter(final TypeSubTypeValue typeSubTypeValue) {
         if (null != typeSubTypeValue) {
             switch (field) {
                 case TYPE :
-                    return _test(typeSubTypeValue.getType());
+                    return _testFilter(typeSubTypeValue.getType());
                 case SUBTYPE :
-                    return _test(typeSubTypeValue.getSubType());
+                    return _testFilter(typeSubTypeValue.getSubType());
                 case VALUE :
-                    return _test(typeSubTypeValue.getValue());
+                    return _testFilter(typeSubTypeValue.getValue());
                 default:
                     throw new IllegalArgumentException("field can only be type, subtype or value");
             }
@@ -76,7 +76,7 @@ public class TypeSubTypeValueHasFieldOf extends KoryphePredicate<TypeSubTypeValu
         return false;
     }
 
-    public boolean _test(final String input) {
+    public boolean _testFilter(final String input) {
         if (null == input) {
             return false;
         }

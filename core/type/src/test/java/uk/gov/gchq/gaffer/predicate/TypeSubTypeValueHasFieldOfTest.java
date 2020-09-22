@@ -40,7 +40,7 @@ public class TypeSubTypeValueHasFieldOfTest extends PredicateTest {
         final TypeSubTypeValueHasFieldOf filter = new TypeSubTypeValueHasFieldOf(TSV.VALUE, "testValue");
 
         // When
-        boolean accepted = filter.test(new TypeSubTypeValue("testType", "testSubType", "testValue"));
+        boolean accepted = filter.testFilter(new TypeSubTypeValue("testType", "testSubType", "testValue"));
 
         // Then
         assertTrue(accepted);
@@ -52,7 +52,7 @@ public class TypeSubTypeValueHasFieldOfTest extends PredicateTest {
         final TypeSubTypeValueHasFieldOf filter = new TypeSubTypeValueHasFieldOf(TSV.TYPE, "testType");
 
         // When
-        boolean accepted = filter.test(new TypeSubTypeValue("testType", "testSubType", "testValue"));
+        boolean accepted = filter.testFilter(new TypeSubTypeValue("testType", "testSubType", "testValue"));
 
         // Then
         assertTrue(accepted);
@@ -64,7 +64,7 @@ public class TypeSubTypeValueHasFieldOfTest extends PredicateTest {
         final TypeSubTypeValueHasFieldOf filter = new TypeSubTypeValueHasFieldOf(TSV.SUBTYPE, "testSubType");
 
         // When
-        boolean accepted = filter.test(new TypeSubTypeValue("testType", "testSubType", "testValue"));
+        boolean accepted = filter.testFilter(new TypeSubTypeValue("testType", "testSubType", "testValue"));
 
         // Then
         assertTrue(accepted);
@@ -76,7 +76,7 @@ public class TypeSubTypeValueHasFieldOfTest extends PredicateTest {
         final TypeSubTypeValueHasFieldOf filter = new TypeSubTypeValueHasFieldOf(TSV.VALUE, "failValue");
 
         // When
-        boolean accepted = filter.test(new TypeSubTypeValue("testType", "testSubType", "testValue"));
+        boolean accepted = filter.testFilter(new TypeSubTypeValue("testType", "testSubType", "testValue"));
 
         // Then
         assertFalse(accepted);
@@ -88,7 +88,7 @@ public class TypeSubTypeValueHasFieldOfTest extends PredicateTest {
         final TypeSubTypeValueHasFieldOf filter = new TypeSubTypeValueHasFieldOf(TSV.TYPE, "failType");
 
         // When
-        boolean accepted = filter.test(new TypeSubTypeValue("testType", "testSubType", "testValue"));
+        boolean accepted = filter.testFilter(new TypeSubTypeValue("testType", "testSubType", "testValue"));
 
         // Then
         assertFalse(accepted);
@@ -100,7 +100,7 @@ public class TypeSubTypeValueHasFieldOfTest extends PredicateTest {
         final TypeSubTypeValueHasFieldOf filter = new TypeSubTypeValueHasFieldOf(TSV.SUBTYPE, "failSubType");
 
         //When
-        boolean accepted = filter.test(new TypeSubTypeValue("testType", "testSubType", "testValue"));
+        boolean accepted = filter.testFilter(new TypeSubTypeValue("testType", "testSubType", "testValue"));
 
         // Then
         assertFalse(accepted);
