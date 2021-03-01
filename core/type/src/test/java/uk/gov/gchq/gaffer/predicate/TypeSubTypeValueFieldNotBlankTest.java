@@ -25,7 +25,11 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
+
 public class TypeSubTypeValueFieldNotBlankTest {
+
     private TypeSubTypeValueFieldNotBlank predicate;
 
     @Before
@@ -38,26 +42,26 @@ public class TypeSubTypeValueFieldNotBlankTest {
         // irrespective of field
         for(TypeSubTypeValueField field :TypeSubTypeValueField.values()) {
             predicate.setField(field);
-            assertThat(predicate.test(null), is(false));
+            assertFalse(predicate.test(null));
         }
     }
 
     @Test
     public void shouldRejectNullValue() {
         predicate.setField(TypeSubTypeValueField.VALUE);
-        assertThat(predicate.test(new TypeSubTypeValue("type", "subtype", null)), is(false));
+        assertFalse(predicate.test(new TypeSubTypeValue("type", "subtype", null)));
     }
 
     @Test
     public void shouldRejectEmptyValue() {
         predicate.setField(TypeSubTypeValueField.VALUE);
-        assertThat(predicate.test(new TypeSubTypeValue("type", "subtype", "")), is(false));
+        assertFalse(predicate.test(new TypeSubTypeValue("type", "subtype", "")));
     }
 
     @Test
     public void shouldAcceptPopulatedValue() {
         predicate.setField(TypeSubTypeValueField.VALUE);
-        assertThat(predicate.test(new TypeSubTypeValue(null, null, "test")), is(true));
+        assertTrue(predicate.test(new TypeSubTypeValue(null, null, "test")));
     }
 
     @Test
@@ -72,5 +76,33 @@ public class TypeSubTypeValueFieldNotBlankTest {
         // convert back to a DTO
         TypeSubTypeValueFieldNotBlank reread = mapper.readValue(jsonStr, TypeSubTypeValueFieldNotBlank.class);
         assertThat(reread.getField(), equalTo(TypeSubTypeValueField.SUBTYPE));
+    }
+
+    @Test
+    public void shouldJsonSerialiseAndDeserialise() throws IOException {
+        // Given
+        final TypeSubTypeValueFieldNotBlank filter = getInstance();
+
+        // When
+        final String json = JsonSerialiser.serialise(filter);
+
+        // Then
+        JsonSerialiser.assertEquals(String.format("{%n" +
+                "  \"class\" : \"uk.gov.gchq.gaffer.predicate.TypeSubTypeValueFieldNotBlank\",%n" +
+                "  \"field\" : \"SUBTYPE\"%n"
+                + "  }%n" +
+                "}"), json);
+
+        // When 2
+        final TypeSubTypeValueFieldNotBlank deserialisedFilter = JsonSerialiser.deserialise(json, TypeSubTypeValueFieldNotBlank.class);
+
+        // Then 2
+        assertEquals(filter.getField(), deserialisedFilter.getField());
+        assertNotNull(deserialisedFilter);
+    }
+
+    @Override
+    protected TypeSubTypeValueFieldNotBlank getInstance() {
+        return new TypeSubTypeValueFieldNotBlank(TSV.VALUE, "[a-zA-Z]{1,12}"); //TODO: This needs to be a valid input - currently isn't
     }
 }
